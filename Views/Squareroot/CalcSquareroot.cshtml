@@ -1,0 +1,58 @@
+@{
+    ViewData["Title"] = "Addition Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Squareroot calculator</h1>
+</div>
+
+<style> 
+.result{
+    color: green;
+    margin-top: 5px;
+}
+.wrong{
+    color: red;
+    margin-top: 5px;
+    font-weight: 700;
+}
+
+
+</style>
+
+<div>
+    <form asp-controller="Squareroot" asp-action="CalcSquareroot" method="POST">
+    <input type="number" placeholder="First Number" name="firstNumber" required/>
+    <input type="number" placeholder="First Number" name="secondNumber" required/>
+    <button type="submit"> Submit </button>
+    </form>
+
+</div >
+
+@{
+    if((ViewBag.Result1 != null) && (ViewBag.Result2 != null)){
+ 
+    if(ViewBag.Result1 > ViewBag.Result2){
+             <div class="result">       
+            <p> The  Number  @ViewBag.content1 With square root   @ViewBag.Result1 has a higher Square root than @ViewBag.content2  with Square root @ViewBag.Result2  </p>
+            </div>
+            }else if( ViewBag.Result1 == ViewBag.Result2){
+                 <div class="wrong">
+                <p>Numbers with same Square root are not allowed!    </p>
+            </div>
+            } else if(ViewBag.Result1 < ViewBag.Result2) {
+                <div class="result"> 
+                        <p>The  Number  @ViewBag.content1 With square root   @ViewBag.Result1 has a Lower Square root than @ViewBag.content2  with Square root @ViewBag.Result2   </p>
+                        </div>
+            }else if((ViewBag.content1 < 0) || (ViewBag.content2 < 0)){
+                <div class="wrong">
+                <p>Sorry you entered a Negative number. Please Enter a positive number</p>
+                </div>
+            }else{
+                <div class="wrong">
+            <p>Not sure of what you did </p>
+            </div>
+            } 
+}
+
+}
